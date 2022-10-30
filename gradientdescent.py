@@ -1,11 +1,19 @@
 import numpy as np
 
+
+#dataset
 x_train = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
 y_train = np.array([460, 232, 178])
 
-b_init = 785.1811367994083
-w_init = np.array([ 0.39133535, 18.75376741, -53.36032453, -26.42131618])
 
+
+#initial weight and bias values 
+b_init = 0
+w_init = np.array([ 0.0, 0.0, 0.0, 0.0])
+
+
+
+#define the cost function 
 def costfunc(x,y,w,b):
     n=x.shape[0]
     summed=0.0
@@ -14,6 +22,7 @@ def costfunc(x,y,w,b):
     summed=summed/2.0/n
     return summed
 
+#computing the gradient
 def comp_grad(x,y,w,b):
     m,n=x.shape
     djw=np.zeros((n))
@@ -27,7 +36,7 @@ def comp_grad(x,y,w,b):
 
     return djw,djb
 
-
+#gradient descent 
 def graddesc(x,y,w,b,costfunction,gradientfunction,alpha,error,maxiterations):
     jinit=costfunction(x,y,w,b)
     wi=w
@@ -47,7 +56,6 @@ def graddesc(x,y,w,b,costfunction,gradientfunction,alpha,error,maxiterations):
     return wnew,bnew,costfunction(x,y,wnew,bnew)
 
 
-inw = np.zeros_like(w_init)
-inb = 0.
+#excecuting the gradient descnet linear regresison for out dataset
 wfin,bfin,jfin=graddesc(x_train,y_train,inw,inb,costfunc,comp_grad,5.0e-7,1.0e-5,900)
 print(wfin,bfin,jfin)
