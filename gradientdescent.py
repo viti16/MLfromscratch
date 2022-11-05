@@ -61,4 +61,17 @@ inb = 0.
 
 #excecuting the gradient descnet linear regresison for out dataset
 wfin,bfin,jfin=graddesc(x_train,y_train,inw,inb,costfunc,comp_grad,5.0e-7,1.0e-5,900)
-print(wfin,bfin,jfin)
+
+#################comparing my calculation with scikitlearn linearregression##################
+from sklearn import linear_model
+from sklearn.preprocessing import StandardScaler
+
+reg = linear_model.LinearRegression()
+reg.fit(x_train, y_train)
+
+wpred=reg.coef_
+bpred=reg.intercept_
+
+a=np.array([2104, 5, 1, 45])
+print('scikitlearn predictoin',np.dot(wpred,a)+bpred,'my prediction',np.dot(wfin,a)+bfin,'actual value',y_train[0])
+
