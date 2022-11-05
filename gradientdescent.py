@@ -55,6 +55,9 @@ def graddesc(x,y,w,b,costfunction,gradientfunction,alpha,error,maxiterations):
 
     return wnew,bnew,costfunction(x,y,wnew,bnew)
 
+inw = np.zeros_like(w_init)
+inb = 0.
+
 
 #excecuting the gradient descnet linear regresison for out dataset
 wfin,bfin,jfin=graddesc(x_train,y_train,inw,inb,costfunc,comp_grad,5.0e-7,1.0e-5,900)
